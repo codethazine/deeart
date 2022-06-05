@@ -10,6 +10,11 @@
       "StackName": "amplify-deeart-dev-111032",
       "StackId": "arn:aws:cloudformation:us-east-1:779963018078:stack/amplify-deeart-dev-111032/5bbd8700-e4af-11ec-ac17-0e652d5874bb",
       "AmplifyAppId": "d3u9osa8tuw626"
+    },
+    "categories": {
+      "auth": {
+        "deeartb8122d29": {}
+      }
     }
   }
 }
