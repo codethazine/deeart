@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "auth": {
+      "deeartb8122d29": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "api": {
+      "deeart": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
