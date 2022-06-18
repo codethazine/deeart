@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-deeart-dev-220431-authRole",
+      "UnauthRoleArn": "arn:aws:iam::779963018078:role/amplify-deeart-dev-220431-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::779963018078:role/amplify-deeart-dev-220431-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-deeart-dev-220431-deployment",
+      "UnauthRoleName": "amplify-deeart-dev-220431-unauthRole",
+      "StackName": "amplify-deeart-dev-220431",
+      "StackId": "arn:aws:cloudformation:us-east-1:779963018078:stack/amplify-deeart-dev-220431/df09b1f0-ef41-11ec-90fc-0abd6d88c69b",
+      "AmplifyAppId": "d24jdij9596xsg"
+    },
+    "categories": {
+      "auth": {
+        "deearta59c94c0": {}
+      }
+    }
+  }
+}
