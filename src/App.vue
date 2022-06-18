@@ -21,6 +21,13 @@
   padding: 0 20px 0px 20px;
 }
 
+.intro-message {
+    margin-top: 10px;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #000;
+}
+
 </style>
 <script>
 import Header from '@/components/Header'

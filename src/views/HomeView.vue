@@ -8,7 +8,7 @@
         <p>DeeArt is an automatic one-click solution that automatically converts your Instagram posts into NFTs. 
           <br>Let you followers support your art.
         </p>
-        <router-link class="typed-logo" to="/get-started">
+        <router-link class="typed-logo" to="/settings">
           <button class="btn btn-primary home-button">Get Started</button>
         </router-link>
         <router-link class="typed-logo" to="/explore">
