@@ -19,10 +19,9 @@
             </router-link>
         </div>
         <div v-else>
-            <div @click="loginWithSocial('Facebook')" style="display: flex; justify-content: space-between;" class="text-center btn btn-dark btn-horiz-social">
-                <a href="#" style="display: absolute; color: white; margin-left: 0"><i class="fab fa-facebook"></i></a>
-                Facebook
-                <a href="#" style="display: absolute; color: transparent; margin-left: 0"><i class="fab fa-facebook"></i></a>
+            <div @click="loginWithSocial('Facebook')" class="btn btn-primary btn-horiz-social">
+                <a href="#" style="color: white; margin-left: 0"><i style="color: white; margin-left: 0; margin-right: 10px; font-size: 25px;" class="fab fa-facebook"></i></a>
+                Login with Facebook
             </div>
         </div>
     </div>
@@ -30,8 +29,37 @@
 </template>
 
 <script>
-export default {
+import { mapActions } from "vuex";
+import { mapGetters } from 'vuex';
+import { Auth } from 'aws-amplify';
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 
+
+// @ is an alias to /src
+export default {
+    name: 'Header',
+    components: {},
+    methods: {
+        ...mapActions({
+            loginVue: "auth/login",
+            loginSocial: "auth/loginSocial"
+        }),
+        async loginWithSocial(social) {
+            if (social === "Google") {
+                user = await Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google })
+                //await this.loginSocial(user);      
+            }
+            else if (social === "Facebook") {
+                user = await Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Facebook })
+                //await this.loginSocial(user);      
+            }
+        },
+    },
+    computed: {
+    ...mapGetters({
+        user: "auth/user",
+        }),
+    },
 }
 </script>
 
@@ -50,6 +78,13 @@ export default {
     width: auto;
     height: 35px;
     margin-right: 10px;
+}
+
+.btn-horiz-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .left-header {

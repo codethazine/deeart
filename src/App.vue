@@ -26,6 +26,8 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CookieBar from '@/components/CookieBar'
+import { mapActions } from "vuex";
+
 
 export default {
   name: 'App',
@@ -33,6 +35,12 @@ export default {
     Header, 
     Footer,
     CookieBar,
+  },
+    mounted() {
+    this.authAction();
+  },
+  methods: {
+    ...mapActions("auth", ["authAction"]),
   },
 }
 </script>
