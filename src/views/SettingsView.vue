@@ -39,17 +39,21 @@ export default {
         }
     },
     async mounted() {
-        /*
-        // Wait till this.user is set 
-        let response = await API.graphql(graphqlOperation(queries.listAccountSettings, {
+        console.log(this.user)
+        if (this.user) {
+            let response = await API.graphql(graphqlOperation(queries.listAccountSettings, {
             input: {
                 userID: this.user.id,
+                }
+            }))
+            console.log(response)
+
+            // Get last account settings in item by updatedAt
+            let accountSettings = response.data.listAccountSettings.items[0]
+            if (accountSettings) {
+                this.AccountSettings = accountSettings
             }
-        }))
-        console.log(response)
-            
-        this.AccountSettings = response.data.listAccountSettings.item;
-        */
+        }
     },
     methods: {
         async logout() {
