@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "deeartDB",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/dariofinocchiaro/Documents/_hackatons/deeart/amplify/backend/api/deeartDB/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AWS_IAM"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authdeearta59c94c0"
+      },
+      {
+        "mode": "AWS_LAMBDA",
+        "lambdaFunction": "graphQlLambdaAuthorizer31584631",
+        "ttlSeconds": "300"
+      },
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2023-06-21T00:04:17.610Z",
+        "keyDescription": "n"
+      }
+    ],
+    "conflictResolution": {}
+  }
+}

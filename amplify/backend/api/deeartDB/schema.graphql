@@ -1,0 +1,26 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type AccountSettings @model @auth(rules: [
+                            { allow: private, provider: iam, operations: [create, update, delete, read]}
+                            ]) {
+  id: ID!
+  igUsername: String!
+  walletAddress: String!
+  defaultETHPrice: String!
+  userID: ID!
+}
+
+type MintedPosts @model @auth(rules: [
+                            { allow: public, operations: [read]}
+                            { allow: private, provider: iam, operations: [create, update, delete, read]}
+                            ]) {
+  id: ID!
+  igUsername: String!
+  ETHPrice: String!
+  available: Boolean!
+  instagramURL: String!
+  imageURL: String!
+  userID: ID!
+}

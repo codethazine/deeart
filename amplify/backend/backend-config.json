@@ -28,5 +28,57 @@
         ]
       }
     }
+  },
+  "api": {
+    "deeartDB": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "deearta59c94c0",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AWS_IAM"
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authdeearta59c94c0"
+              }
+            },
+            {
+              "authenticationType": "AWS_LAMBDA",
+              "lambdaAuthorizerConfig": {
+                "lambdaFunction": "graphQlLambdaAuthorizer31584631",
+                "ttlSeconds": "300"
+              }
+            },
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "description": "n",
+                "apiKeyExpirationDays": 365,
+                "apiKeyExpirationDate": "2023-06-21T00:04:17.610Z"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "function": {
+    "graphQlLambdaAuthorizer31584631": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
   }
 }
