@@ -20,7 +20,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "function": {
-        "graphQlLambdaAuthorizer31584631": {
+        "instagramWebScraper": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",

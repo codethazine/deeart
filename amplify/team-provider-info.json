@@ -16,9 +16,9 @@
         "deearta59c94c0": {}
       },
       "function": {
-        "graphQlLambdaAuthorizer31584631": {
+        "instagramWebScraper": {
           "deploymentBucketName": "amplify-deeart-dev-220431-deployment",
-          "s3Key": "amplify-builds/graphQlLambdaAuthorizer31584631-556c4261354175333938-build.zip"
+          "s3Key": "amplify-builds/instagramWebScraper-573855504f7a6d617350-build.zip"
         }
       }
     }
