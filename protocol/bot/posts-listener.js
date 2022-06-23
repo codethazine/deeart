@@ -34,6 +34,7 @@ contract.on('MintRequest', async (requestor, ipns, paymentToken, event) => {
     try {
         const mintTx = await contract.mint(mintParams)
         const txReceipt = await mintTx.wait()
+        console.log(`MINTED ${ipns} successfully.`)
     } catch (err) {
         // TODO - handle error (send email/ log to file/ other)
     }
