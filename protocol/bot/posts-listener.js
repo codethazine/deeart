@@ -1,20 +1,40 @@
 const ethers = require('ethers')
 require('dotenv').config()
 
-// const ganache = require('ganache-core')
-const provider = new ethers.providers.WebSocketProvider('wss://rinkeby.infura.io/ws/v3/f4ec2131c2e045c9af0a5a0e705f5390')
+
+const provider = new ethers.providers.WebSocketProvider(process.env.INFURA_WS_URL)
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
+
 console.log('listening...')
+
 const contract = new ethers.Contract(
-    '0xc778417E063141139Fce010982780140Aa0cD5Ab',
+    process.env.POSTS_CONTRACT_ADDRESS,
     [
-        "event  Approval(address indexed src, address indexed guy, uint wad)",
-        "event  Transfer(address indexed src, address indexed dst, uint wad)",
-        "event  Deposit(address indexed dst, uint wad)",
-        "event  Withdrawal(address indexed src, uint wad)"
+        "event MintRequest(address indexed requestor,string ipns,address paymentToken)",
+        "function mint((string,address,address,address,uint256,address,uint256)) public",
+        // "function mint((string,address,address,address,uint256,address,uint256)) public",
     ],
-    provider
+    wallet
 )
 
-// while (true) {
-contract.on('*', (...args) => console.log(args))
-// }
+const getSeller = async ipns => '0x0694F03895Aef20A0ED881C561392De938130206'
+const getAmountToSeller = async ipns => ethers.BigNumber.from(ethers.BigNumber.from('500000000'))
+const getAmountToFeesCollector = async ipns => ethers.BigNumber.from(ethers.BigNumber.from('500000000'))
+
+contract.on('MintRequest', async (requestor, ipns, paymentToken, event) => {
+    const mintParams = [
+        ipns,
+        paymentToken,
+        requestor,
+        await getSeller(ipns), // TODO - fetch/db interaction
+        await getAmountToSeller(ipns), // TODO - fecth/db interaction
+        process.env.FEES_COLLECTOR_ADDRESS,
+        await getAmountToFeesCollector(ipns) // TODO - fetch/db interaction
+    ]
+    try {
+        const mintTx = await contract.mint(mintParams)
+        const txReceipt = await mintTx.wait()
+    } catch (err) {
+        // TODO - handle error (send email/ log to file/ other)
+    }
+})

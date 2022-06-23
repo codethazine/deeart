@@ -3,6 +3,7 @@
 //
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
+const { BigNumber } = require("ethers");
 const { ethers } = require("hardhat");
 // const hre = require("hardhat");
 require('dotenv').config()
@@ -12,12 +13,13 @@ require('dotenv').config()
 async function main() {
     const signers = await ethers.getSigners()
     const abi = [
-        "function requestMint(string) public payable",
+        "function requestMintNative(string) public payable",
         "event MintRequest(string ipns, address paymentToken)"
     ]
-    const posts = new ethers.Contract(process.env.POSTS, abi, signers[0])
-    const req = await posts.requestMint("10", {
-        gasLimit: 3000000
+    const posts = new ethers.Contract(process.env.POSTS_CONTRACT_ADDRESS, abi, signers[0])
+    const req = await posts.requestMintNative("1", {
+        gasLimit: 30000000,
+        value: BigNumber.from('1000000000')
     });
     const receipt = await req.wait()
     console.log(receipt.events.find(el => el.event === 'MintRequest'))

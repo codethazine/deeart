@@ -1,6 +1,7 @@
 const { task } = require("hardhat/config");
 const { BigNumber} = require('ethers')
 
+require('dotenv').config()
 require("@nomiclabs/hardhat-waffle");
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -51,6 +52,10 @@ module.exports = {
     },
     localhost: {
       url: "http://127.0.0.1:8545"
+    },
+    kovan : {
+      url: process.env.INFURA_URL,
+      accounts: [process.env.PRIVATE_KEY]
     }
   }
 };
