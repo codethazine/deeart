@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "bot:weth": "node bot/weth-listener.js",
-    "bot:posts": "node bot/posts-listener.js"
+    "bot:posts": "node bot/posts-listener.js",
+    "bot:posts:pm2": "yarn pm2 start bot/posts-listener.js"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",
@@ -16,6 +17,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.6.0",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "pm2": "^5.2.0"
   }
 }

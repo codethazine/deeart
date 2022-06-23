@@ -27,3 +27,9 @@ npm run/ yarn bot:weth
 ```shell
 npm run/ yarn bot:posts
 ```
+
+if instead you would like to run it using PM2
+
+```shell
+yarn bot/posts:pm2
+```
