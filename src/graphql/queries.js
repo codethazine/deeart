@@ -8,6 +8,7 @@ export const getAccountSettings = /* GraphQL */ `
       igUsername
       walletAddress
       defaultETHPrice
+      igUniqueID
       userID
       createdAt
       updatedAt
@@ -26,6 +27,7 @@ export const listAccountSettings = /* GraphQL */ `
         igUsername
         walletAddress
         defaultETHPrice
+        igUniqueID
         userID
         createdAt
         updatedAt
@@ -39,6 +41,7 @@ export const getMintedPosts = /* GraphQL */ `
     getMintedPosts(id: $id) {
       id
       igUsername
+      igID
       ETHPrice
       available
       instagramURL
@@ -59,6 +62,7 @@ export const listMintedPosts = /* GraphQL */ `
       items {
         id
         igUsername
+        igID
         ETHPrice
         available
         instagramURL

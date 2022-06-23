@@ -1,0 +1,16 @@
+{
+  "resourceName": "deeartStorage",
+  "policyUUID": "7557c556",
+  "bucketName": "deeart8ec7eaf4aee54f558c184f4383a23c7a",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

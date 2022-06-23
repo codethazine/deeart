@@ -13,6 +13,14 @@
         "Query",
         "Mutation"
       ]
+    },
+    "storage": {
+      "deeartStorage": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
     }
   },
   "lambdaLayers": []

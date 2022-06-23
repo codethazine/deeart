@@ -13,12 +13,13 @@
     },
     "categories": {
       "auth": {
-        "deearta59c94c0": {}
+        "deearta59c94c0": {},
+        "true": {}
       },
       "function": {
         "instagramWebScraper": {
           "deploymentBucketName": "amplify-deeart-dev-220431-deployment",
-          "s3Key": "amplify-builds/instagramWebScraper-573855504f7a6d617350-build.zip"
+          "s3Key": "amplify-builds/instagramWebScraper-43726f7a6b536335374f-build.zip"
         }
       }
     }

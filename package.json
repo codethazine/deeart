@@ -10,6 +10,7 @@
     "@aws-amplify/ui-vue": "^2.4.9",
     "aws-amplify": "^4.3.26",
     "core-js": "^3.8.3",
+    "instagram-scraping": "^1.0.17",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
