@@ -31,6 +31,10 @@
     "apideeartDBGraphQLAPIKeyOutput": {
       "Type": "String",
       "Default": "apideeartDBGraphQLAPIKeyOutput"
+    },
+    "storagedeeartStorageBucketName": {
+      "Type": "String",
+      "Default": "storagedeeartStorageBucketName"
     }
   },
   "Conditions": {
@@ -97,6 +101,9 @@
             },
             "API_DEEARTDB_GRAPHQLAPIKEYOUTPUT": {
               "Ref": "apideeartDBGraphQLAPIKeyOutput"
+            },
+            "STORAGE_DEEARTSTORAGE_BUCKETNAME": {
+              "Ref": "storagedeeartStorageBucketName"
             }
           }
         },
@@ -358,6 +365,45 @@
                         "Ref": "apideeartDBGraphQLAPIIdOutput"
                       },
                       "/types/Mutation/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": "s3:ListBucket",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:s3:::",
+                      {
+                        "Ref": "storagedeeartStorageBucketName"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:DeleteObject"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:s3:::",
+                      {
+                        "Ref": "storagedeeartStorageBucketName"
+                      },
+                      "/*"
                     ]
                   ]
                 }

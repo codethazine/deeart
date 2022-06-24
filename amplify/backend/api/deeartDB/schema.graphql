@@ -9,6 +9,7 @@ type AccountSettings @model @auth(rules: [
   igUsername: String!
   walletAddress: String!
   defaultETHPrice: String!
+  igUniqueID: String!
   userID: ID!
 }
 
@@ -18,6 +19,7 @@ type MintedPosts @model @auth(rules: [
                             ]) {
   id: ID!
   igUsername: String!
+  igID: String!
   ETHPrice: String!
   available: Boolean!
   instagramURL: String!

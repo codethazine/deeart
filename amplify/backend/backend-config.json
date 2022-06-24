@@ -95,8 +95,22 @@
             "GraphQLAPIEndpointOutput",
             "GraphQLAPIKeyOutput"
           ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "deeartStorage",
+          "attributes": [
+            "BucketName"
+          ]
         }
       ]
+    }
+  },
+  "storage": {
+    "deeartStorage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   }
 }
