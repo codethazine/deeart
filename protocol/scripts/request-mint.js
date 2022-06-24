@@ -5,10 +5,8 @@
 // Runtime Environment's members available in the global scope.
 const { BigNumber } = require("ethers");
 const { ethers } = require("hardhat");
-// const hre = require("hardhat");
-require('dotenv').config()
 
-// const provider = ethers.getDefaultProvider('http//localhost:8545')
+require('dotenv').config()
 
 async function main() {
     const signers = await ethers.getSigners()

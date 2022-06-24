@@ -15,11 +15,12 @@ contract Posts is Ownable, ERC165, IERC1155, IERC1155MetadataURI {
 
     event MintRequest(
         address indexed requestor,
-        string ipns,
+        string id,
         address paymentToken
     );
 
     struct MintParams {
+        string id;
         string ipns;
         address paymentToken;
         address receiver;
@@ -89,20 +90,20 @@ contract Posts is Ownable, ERC165, IERC1155, IERC1155MetadataURI {
     /**
      * @notice request minting with NATIVE coin payment
      */
-    function requestMintNative(string calldata ipns) public payable {
-        _handleRequestMint(ipns, address(0), msg.value);
+    function requestMintNative(string calldata id) public payable {
+        _handleRequestMint(id, address(0), msg.value);
     }
 
     /**
      * @notice request minting with ERC20 payment
      */
     function requestMint(
-        string calldata ipns,
+        string calldata id,
         address paymentToken,
         uint256 amount
     ) public {
         IERC20(paymentToken).transferFrom(_msgSender(), address(this), amount);
-        _handleRequestMint(ipns, paymentToken, amount);
+        _handleRequestMint(id, paymentToken, amount);
     }
 
     /**
@@ -362,24 +363,21 @@ contract Posts is Ownable, ERC165, IERC1155, IERC1155MetadataURI {
     }
 
     function _handleRequestMint(
-        string calldata ipns,
+        string calldata id,
         address paymentToken,
         uint256 amount
     ) internal {
-        require(_status[ipns] == MintStatus.AVAILABLE, "Posts: Not Available");
+        require(_status[id] == MintStatus.AVAILABLE, "Posts: Not Available");
         _supplied[_msgSender()][paymentToken] += amount;
-        _status[ipns] = MintStatus.PENDING;
-        emit MintRequest(_msgSender(), ipns, paymentToken);
+        _status[id] = MintStatus.PENDING;
+        emit MintRequest(_msgSender(), id, paymentToken);
     }
 
     /**
      * @notice Internal function to handle minting
      */
     function _handleMint(MintParams calldata params) internal {
-        require(
-            _status[params.ipns] == MintStatus.PENDING,
-            "Posts: Not Pending"
-        );
+        require(_status[params.id] == MintStatus.PENDING, "Posts: Not Pending");
 
         if (
             _supplied[params.receiver][params.paymentToken] >=
@@ -404,10 +402,10 @@ contract Posts is Ownable, ERC165, IERC1155, IERC1155MetadataURI {
             }
             _ipnsAddress[nextId] = params.ipns;
             _mint(params.receiver, nextId, 1, "");
-            _status[params.ipns] = MintStatus.MINTED;
+            _status[params.id] = MintStatus.MINTED;
             nextId++;
         } else {
-            _status[params.ipns] = MintStatus.AVAILABLE;
+            _status[params.id] = MintStatus.AVAILABLE;
         }
     }
 
