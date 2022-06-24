@@ -145,7 +145,7 @@ i {
     background-color: #1CAC78;
 }
 
-.disconnect-bt {
+.disconnect-btn {
     background-color: #008080;
 }
 
