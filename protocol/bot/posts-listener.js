@@ -61,7 +61,6 @@ contract.on('MintRequest', async (requestor, id, paymentToken, event) => {
     ]
     try {
         const mintTx = await contract.mint(mintParams)
-        // const txReceipt = await mintTx.wait()
         console.log(`MINTED ${ipns} successfully.`)
         setPostAs(id, MINTED)
     } catch (err) {

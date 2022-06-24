@@ -24,6 +24,22 @@
                 Login with Facebook
             </div>
         </div>
+        <div>
+            <button
+                class="btn connect-btn"
+                v-if="!data.account"
+                @click="connect()"
+            >
+                Connect Wallet
+            </button>
+            <button
+                class="btn disconnect-btn"
+                v-if="data.account"
+                @click="disconnect()"
+            >
+                {{data.account}}
+            </button>
+        </div>
     </div>
   </nav>
 </template>
@@ -33,6 +49,7 @@ import { mapActions } from "vuex";
 import { mapGetters } from 'vuex';
 import { Auth } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
+import web3Modal from '..//utils/web3';
 
 
 // @ is an alias to /src
@@ -42,22 +59,31 @@ export default {
     methods: {
         ...mapActions({
             loginVue: "auth/login",
-            loginSocial: "auth/loginSocial"
+            loginSocial: "auth/loginSocial",
+            connectWallet: "web3/connect",
+            diconnectWallet: "web3/disconnect"
         }),
         async loginWithSocial(social) {
             if (social === "Google") {
                 user = await Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google })
-                //await this.loginSocial(user);      
+                //await this.loginSocial(user);
             }
             else if (social === "Facebook") {
                 user = await Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Facebook })
-                //await this.loginSocial(user);      
+                //await this.loginSocial(user);
             }
         },
+        async connect() {
+            await this.connectWallet();
+        },
+        async disconnect() {
+            await this.disconnectWallet();
+        }
     },
     computed: {
     ...mapGetters({
         user: "auth/user",
+        data: "web3/data"
         }),
     },
 }
@@ -113,6 +139,14 @@ i {
     font-size: 2em;
     margin-left: 20px;
     color: #454c55;
+}
+
+.connect-btn {
+    background-color: #1CAC78;
+}
+
+.disconnect-bt {
+    background-color: #008080;
 }
 
 </style>

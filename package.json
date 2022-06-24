@@ -10,10 +10,12 @@
     "@aws-amplify/ui-vue": "^2.4.9",
     "aws-amplify": "^4.3.26",
     "core-js": "^3.8.3",
+    "ethers": "^5.6.9",
     "instagram-scraping": "^1.0.17",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "web3modal": "^1.9.8"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",
