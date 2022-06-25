@@ -21,7 +21,7 @@ describe("Posts", function () {
     const event = receipt.events.find(el => el.event == 'MintRequest')
     expect(event).to.not.be.undefined
     expect(event.args.requestor).to.be.equal(this.account0)
-    expect(event.args.ipns).to.be.equal('000001')
+    expect(event.args.id).to.be.equal('000001')
     expect(event.args.paymentToken).to.be.equal(constants.AddressZero)
     await this.posts.requestMintNative("000002", {
       value: constants.WeiPerEther
@@ -35,11 +35,12 @@ describe("Posts", function () {
 
   })
 
-  it("shold not allow minting by non owner accounts", async () => {
+  it("should not allow minting by non owner accounts", async () => {
     const nonOwnerContract = this.posts.connect(this.signers[1])
     let errorMsg;
     try {
-      await nonOwnerContract.mint([
+      const mintParams = [
+        "000001",
         "000001",
         constants.AddressZero,
         this.account0,
@@ -47,15 +48,18 @@ describe("Posts", function () {
         constants.WeiPerEther.div(BigNumber.from('2')),
         this.account0,
         constants.WeiPerEther.div(BigNumber.from('2')),
-      ])
+      ]
+      await nonOwnerContract.mint(mintParams)
     } catch (err) {
       errorMsg = err.toString()
+      console.log(errorMsg)
     }
     expect(errorMsg.includes('caller is not the owner')).to.be.true;
   })
 
   it("Should allow minting by the owner", async () => {
-    const mint = await this.posts.mint([
+    const mintParams = [
+      "000001",
       "000001",
       constants.AddressZero,
       this.account0,
@@ -63,7 +67,8 @@ describe("Posts", function () {
       constants.WeiPerEther.div(BigNumber.from('2')),
       this.account0,
       constants.WeiPerEther.div(BigNumber.from('2')),
-    ])
+    ]
+    const mint = await this.posts.mint(mintParams)
 
     const txReceipt = await mint.wait();
     const transferSingleEvent = txReceipt.events.find(el => el.event == 'TransferSingle')
@@ -78,6 +83,7 @@ describe("Posts", function () {
     let errorMsg;
     try {
       await this.posts.functions.mint([
+        "000001",
         "000001",
         constants.AddressZero,
         this.account0,
@@ -102,6 +108,7 @@ describe("Posts", function () {
     const batchMint = await this.posts.batchMint([
       [
         "000002",
+        "000002",
         constants.AddressZero,
         this.account0,
         this.account1,
@@ -110,6 +117,7 @@ describe("Posts", function () {
         constants.WeiPerEther.div(BigNumber.from('2')),
       ],
       [
+        "000003",
         "000003",
         constants.AddressZero,
         this.account0,

@@ -15,7 +15,7 @@ async function main() {
         "event MintRequest(string ipns, address paymentToken)"
     ]
     const posts = new ethers.Contract(process.env.POSTS_CONTRACT_ADDRESS, abi, signers[0])
-    const req = await posts.requestMintNative("3", {
+    const req = await posts.requestMintNative("test7", {
         gasLimit: 30000000,
         value: BigNumber.from('1000000000')
     });

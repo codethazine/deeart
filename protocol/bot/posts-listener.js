@@ -13,15 +13,16 @@ const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
 const contract = new ethers.Contract(
     process.env.POSTS_CONTRACT_ADDRESS,
     [
-        "event MintRequest(address indexed requestor,uint256 id,address paymentToken)",
-        "function mint((uint,address,address,address,uint256,address,uint256)) public",
+        "event MintRequest(address indexed requestor,string id,address paymentToken)",
+        "function mint((string,string,address,address,address,uint256,address,uint256)) public",
     ],
     wallet
 )
 
 const getSeller = async ipns => '0x0694F03895Aef20A0ED881C561392De938130206'
-const getAmountToSeller = async ipns => ethers.BigNumber.from(ethers.BigNumber.from('500000000'))
-const getAmountToFeesCollector = async ipns => ethers.BigNumber.from(ethers.BigNumber.from('500000000'))
+const getAmountToSeller = async ipns => ethers.BigNumber.from('500000000')
+const getAmountToFeesCollector = async ipns => ethers.BigNumber.from('500000000')
+
 
 const uploadToIPFS = async id => {
     // fetch data from DB
@@ -48,10 +49,11 @@ const setPostAs = async (id, status) => {
 
 console.log('Listening...')
 contract.on('MintRequest', async (requestor, id, paymentToken, event) => {
+    console.log(`Received request for ${id} by ${requestor}`);
     const ipns = await uploadToIPFS(id);
     const mintParams = [
         id,
-        ipns,
+        ipns.toString(),
         paymentToken,
         requestor,
         await getSeller(id), // TODO - fetch/db interaction
@@ -61,11 +63,12 @@ contract.on('MintRequest', async (requestor, id, paymentToken, event) => {
     ]
     try {
         const mintTx = await contract.mint(mintParams)
-        console.log(`MINTED ${ipns} successfully.`)
+        console.log(`MINTED ${id} to ${ipns} successfully.`)
         setPostAs(id, MINTED)
     } catch (err) {
         // TODO - handle error (send email/ log to file/ other)
         //
+        console.log(err)
         setPostAs(id, NOT_MINTED)
     }
 })

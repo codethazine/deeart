@@ -27,7 +27,7 @@ const pullFromAWS = async (imageURL) => {
     }
 
     const file = await s3.getObject(params).promise()
-    // console.log(file)
+    console.log('fileDownloaded')
     fs.writeFileSync(filePath, file.Body)
     // console.log(`${filePath} has been created!`);
     return filePath

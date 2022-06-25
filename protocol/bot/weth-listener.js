@@ -1,12 +1,12 @@
 const ethers = require('ethers')
 require('dotenv').config()
 
-const provider = new ethers.providers.WebSocketProvider(process.env.INFURA_URL)
+const provider = new ethers.providers.WebSocketProvider(process.env.INFURA_WS_URL)
 const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
 
 console.log('listening...')
 const contract = new ethers.Contract(
-    '0xc778417E063141139Fce010982780140Aa0cD5Ab',// Rinkeby WETH address
+    '0xd0A1E359811322d97991E03f863a0C30C2cF029C',// Rinkeby WETH address
     [
         "event  Approval(address indexed src, address indexed guy, uint wad)",
         "event  Transfer(address indexed src, address indexed dst, uint wad)",
