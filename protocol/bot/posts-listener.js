@@ -1,6 +1,6 @@
 const ethers = require('ethers')
-import { parseEther } from 'ethers/lib/utils'
-import { uploadToIPFS } from './utils'
+const { parseEther } = require('ethers/lib/utils')
+const { uploadToIPFS } = require('./utils')
 
 require('dotenv').config()
 

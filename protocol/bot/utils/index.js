@@ -1,10 +1,10 @@
 const fs = require('fs');
 
-const { getPostData } = require('./utils/0_postData');
-const { pullFromAWS } = require('./utils/1_awsDownload');
-const { pinImageToIPFS, pinJSONtoIPFS } = require('./utils/2_pinata');
+const { getPostData } = require('./0_postData');
+const { pullFromAWS } = require('./1_awsDownload');
+const { pinImageToIPFS, pinJSONtoIPFS } = require('./2_pinata');
 
-export const uploadToIPFS = async id => {
+const uploadToIPFS = async id => {
     // fetch data from DB
     const data = await getPostData(id)
     // pull from s3
@@ -20,4 +20,7 @@ export const uploadToIPFS = async id => {
         hash: jsonData.IpfsHash,
         data
     };
+}
+module.exports = {
+    uploadToIPFS
 }
