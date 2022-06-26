@@ -19,7 +19,9 @@
     "@openzeppelin/contracts": "^4.6.0",
     "@pinata/sdk": "^1.1.26",
     "aws-sdk": "^2.1160.0",
+    "covalentjs": "^0.0.3",
     "dotenv": "^16.0.1",
-    "pm2": "^5.2.0"
+    "pm2": "^5.2.0",
+    "stompjs": "^2.3.3"
   }
 }

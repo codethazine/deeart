@@ -1,6 +1,7 @@
 const ethers = require('ethers')
 require('dotenv').config()
 
+
 const provider = new ethers.providers.WebSocketProvider(process.env.INFURA_WS_URL)
 const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
 
