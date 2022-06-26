@@ -14,14 +14,14 @@
       },
       {
         "mode": "AWS_LAMBDA",
-        "lambdaFunction": "graphQlLambdaAuthorizer31584631",
+        "lambdaFunction": "instagramWebScraper",
         "ttlSeconds": "300"
       },
       {
         "mode": "API_KEY",
         "expirationTime": 365,
-        "apiKeyExpirationDate": "2023-06-21T00:04:17.610Z",
-        "keyDescription": "n"
+        "apiKeyExpirationDate": "2023-06-24T07:44:55.647Z",
+        "keyDescription": ""
       }
     ],
     "conflictResolution": {}

@@ -20,6 +20,10 @@
       "Type": "String",
       "Default": "authdeearta59c94c0UserPoolId"
     },
+    "storagedeeartStorageBucketName": {
+      "Type": "String",
+      "Default": "storagedeeartStorageBucketName"
+    },
     "apideeartDBGraphQLAPIIdOutput": {
       "Type": "String",
       "Default": "apideeartDBGraphQLAPIIdOutput"
@@ -27,14 +31,6 @@
     "apideeartDBGraphQLAPIEndpointOutput": {
       "Type": "String",
       "Default": "apideeartDBGraphQLAPIEndpointOutput"
-    },
-    "apideeartDBGraphQLAPIKeyOutput": {
-      "Type": "String",
-      "Default": "apideeartDBGraphQLAPIKeyOutput"
-    },
-    "storagedeeartStorageBucketName": {
-      "Type": "String",
-      "Default": "storagedeeartStorageBucketName"
     }
   },
   "Conditions": {
@@ -93,17 +89,14 @@
             "AUTH_DEEARTA59C94C0_USERPOOLID": {
               "Ref": "authdeearta59c94c0UserPoolId"
             },
+            "STORAGE_DEEARTSTORAGE_BUCKETNAME": {
+              "Ref": "storagedeeartStorageBucketName"
+            },
             "API_DEEARTDB_GRAPHQLAPIIDOUTPUT": {
               "Ref": "apideeartDBGraphQLAPIIdOutput"
             },
             "API_DEEARTDB_GRAPHQLAPIENDPOINTOUTPUT": {
               "Ref": "apideeartDBGraphQLAPIEndpointOutput"
-            },
-            "API_DEEARTDB_GRAPHQLAPIKEYOUTPUT": {
-              "Ref": "apideeartDBGraphQLAPIKeyOutput"
-            },
-            "STORAGE_DEEARTSTORAGE_BUCKETNAME": {
-              "Ref": "storagedeeartStorageBucketName"
             }
           }
         },
@@ -411,6 +404,16 @@
             }
           ]
         }
+      }
+    },
+    "PermissionForAppSyncToInvokeLambda": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunction"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "appsync.amazonaws.com"
       }
     }
   },

@@ -19,7 +19,7 @@
       "function": {
         "instagramWebScraper": {
           "deploymentBucketName": "amplify-deeart-dev-220431-deployment",
-          "s3Key": "amplify-builds/instagramWebScraper-43726f7a6b536335374f-build.zip"
+          "s3Key": "amplify-builds/instagramWebScraper-4763726c534a4c595544-build.zip"
         }
       }
     }

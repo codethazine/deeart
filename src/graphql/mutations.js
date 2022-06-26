@@ -10,7 +10,7 @@ export const createAccountSettings = /* GraphQL */ `
       id
       igUsername
       walletAddress
-      defaultETHPrice
+      defaultMaticPrice
       igUniqueID
       userID
       createdAt
@@ -27,7 +27,7 @@ export const updateAccountSettings = /* GraphQL */ `
       id
       igUsername
       walletAddress
-      defaultETHPrice
+      defaultMaticPrice
       igUniqueID
       userID
       createdAt
@@ -44,7 +44,7 @@ export const deleteAccountSettings = /* GraphQL */ `
       id
       igUsername
       walletAddress
-      defaultETHPrice
+      defaultMaticPrice
       igUniqueID
       userID
       createdAt
@@ -60,12 +60,13 @@ export const createMintedPosts = /* GraphQL */ `
     createMintedPosts(input: $input, condition: $condition) {
       id
       igUsername
-      igID
-      ETHPrice
+      igUniqueID
+      MaticPrice
       available
       instagramURL
       imageURL
       userID
+      walletAddress
       createdAt
       updatedAt
     }
@@ -79,12 +80,13 @@ export const updateMintedPosts = /* GraphQL */ `
     updateMintedPosts(input: $input, condition: $condition) {
       id
       igUsername
-      igID
-      ETHPrice
+      igUniqueID
+      MaticPrice
       available
       instagramURL
       imageURL
       userID
+      walletAddress
       createdAt
       updatedAt
     }
@@ -98,12 +100,13 @@ export const deleteMintedPosts = /* GraphQL */ `
     deleteMintedPosts(input: $input, condition: $condition) {
       id
       igUsername
-      igID
-      ETHPrice
+      igUniqueID
+      MaticPrice
       available
       instagramURL
       imageURL
       userID
+      walletAddress
       createdAt
       updatedAt
     }

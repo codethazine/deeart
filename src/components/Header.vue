@@ -4,14 +4,16 @@
       <router-link style="margin: 0;" to="/"><img class="header-logo" alt="header-logo" src="@/assets/deeart-logo.png"/></router-link>
       <router-link class="typed-logo" to="/">DeeArt</router-link>
     </div>
+    <!--
     <div class="center-header">
         <router-link class="header-link" to="/explore">Explore</router-link>
         <router-link class="header-link" :to="{ path: '/', hash: '#features' }">FAQs</router-link>
         <router-link class="header-link" :to="{ path: '/', hash: '#pricing' }">Pricing</router-link>
     </div>
+    -->
     <div class="right-header">
         <div v-if="user">
-            <router-link to="/account">
+            <router-link to="/test.deeartist">
                 <i class="material-icons">account_circle</i>
             </router-link>
             <router-link to="/settings">

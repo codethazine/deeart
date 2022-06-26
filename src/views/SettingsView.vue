@@ -10,15 +10,15 @@
                 <label class="upper-text" style="margin-bottom: 0px;">Instagram Unique ID</label>
                 <div>You can get your Instagram Unique ID at the following link:</div>
                 <a href="url" target="_blank">https://commentpicker.com/instagram-user-id.php</a>
-                <input style="margin-top: 10px;" v-model="AccountSettings.igID" type="text" class="form-control" placeholder="53612203719">
+                <input style="margin-top: 10px;" v-model="AccountSettings.igUniqueID" type="text" class="form-control" placeholder="53612203719">
             </div>
             <div class="form-group">
                 <label class="upper-text">Wallet address</label>
                 <input v-model="AccountSettings.walletAddress" type="text" class="form-control" placeholder="0x118046FFeBEe49a78674BB057A53FA5b48eD1289">
             </div>
             <div class="form-group">
-                <label class="upper-text">Default price per NFT in ETH</label>
-                <input v-model="AccountSettings.defaultETHPrice" type="number" class="form-control" placeholder="0.2">
+                <label class="upper-text">Default price per NFT in Matic</label>
+                <input v-model="AccountSettings.defaultMaticPrice" type="number" class="form-control" placeholder="0.2">
             </div>
             <div class="button-container">
                 <button type="submit" class="btn btn-primary btn-settings" @click="saveSettings">Save</button>
@@ -42,8 +42,8 @@ export default {
             AccountSettings: {
                 igUsername: "",
                 walletAddress: "",
-                defaultETHPrice: "",
-                igID: "",
+                defaultMaticPrice: "",
+                igUniqueID: "",
             },
             settingsMsg: "",
             isSaving: false,
@@ -75,7 +75,7 @@ export default {
         async saveSettings() {
             console.log(this.user)
             // Check if everything is filled out
-            if (this.AccountSettings.igUsername == "" || this.AccountSettings.walletAddress == "" || this.AccountSettings.defaultETHPrice == "") {
+            if (this.AccountSettings.igUsername == "" || this.AccountSettings.walletAddress == "" || this.AccountSettings.defaultMaticPrice == "") {
                 // Show error
                 this.settingsMsg = "Please fill out all fields"
                 return;
@@ -86,10 +86,10 @@ export default {
             await API.graphql(graphqlOperation(mutations.createAccountSettings, {
                 input: {
                     userID: this.user.id,
-                    igUniqueID: this.AccountSettings.igID,
+                    igUniqueID: this.AccountSettings.igUniqueID,
                     igUsername: this.AccountSettings.igUsername,
                     walletAddress: this.AccountSettings.walletAddress,
-                    defaultETHPrice: this.AccountSettings.defaultETHPrice,
+                    defaultMaticPrice: this.AccountSettings.defaultMaticPrice,
                 }
             })).then(response => {
                 console.log(response)
