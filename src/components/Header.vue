@@ -26,22 +26,6 @@
                 Login with Facebook
             </div>
         </div>
-        <div>
-            <button
-                class="btn connect-btn"
-                v-if="!data.account"
-                @click="connect()"
-            >
-                Connect Wallet
-            </button>
-            <button
-                class="btn disconnect-btn"
-                v-if="data.account"
-                @click="disconnect()"
-            >
-                {{data.account}}
-            </button>
-        </div>
     </div>
   </nav>
 </template>
@@ -51,8 +35,6 @@ import { mapActions } from "vuex";
 import { mapGetters } from 'vuex';
 import { Auth } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-import web3Modal from '..//utils/web3';
-
 
 // @ is an alias to /src
 export default {
@@ -75,12 +57,6 @@ export default {
                 //await this.loginSocial(user);
             }
         },
-        async connect() {
-            await this.connectWallet();
-        },
-        async disconnect() {
-            await this.disconnectWallet();
-        }
     },
     computed: {
     ...mapGetters({
